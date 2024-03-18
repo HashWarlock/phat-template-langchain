@@ -14,7 +14,7 @@ async function readTweetsFromCsv(filepath: string) {
 }
 
 async function langChainPipe(openaiApiKey: string, query: string): Promise<string> {
-    const examples = await readTweetsFromCsv("res/marvin_tong.csv");
+    const examples = await readTweetsFromCsv("res/taylorswift13.csv");
     const examplePrompt = new PromptTemplate({
         inputVariables: ["Content"],
         template: `Tweet: {Content}`
@@ -32,7 +32,7 @@ async function langChainPipe(openaiApiKey: string, query: string): Promise<strin
     const fewShotPromptTemplate = new FewShotPromptTemplate({
         examples: examples,
         examplePrompt: examplePrompt,
-        prefix: await prefixPrompt.format({ identity: "Vitalik Buterin" }),
+        prefix: await prefixPrompt.format({ identity: "Taylor Swift" }),
         suffix: suffixTemplate,
         inputVariables: ["query"]
     });
